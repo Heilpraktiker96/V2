@@ -1,0 +1,72 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', sans-serif;
+}
+
+.tech-grid {
+  background-image: radial-gradient(rgba(30, 136, 229, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #0A1128;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.card-hover {
+    transform: translateY(0);
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+}
+
+.gs-reveal {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Design-Vorgabe: Stark transparente Überlagerung für den Hero-Bereich */
+.hero-gradient { background: linear-gradient(rgba(10, 36, 66, 0.4), rgba(10, 36, 66, 0.6)); } 
+
+/* Design-Vorgabe: Hintergrund-Klasse für die Sektionen mit Schienen-Bild */
+.bg-shared-tracks {
+    background-image: url('https://images.pexels.com/photos/724712/pexels-photo-724712.jpeg?cs=srgb&dl=pexels-iriser-724712.jpg&fm=jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
