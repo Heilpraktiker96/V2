@@ -13,7 +13,8 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submission started (Web3Forms)...");
+    console.log("!!! CONTACT FORM SUBMISSION STARTED !!!");
+    console.log("Provider: Web3Forms");
     setFormStatus("submitting");
 
     const formData = new FormData(e.currentTarget);
