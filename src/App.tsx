@@ -5,8 +5,11 @@
 
 import { motion } from "motion/react";
 import { UserCheck, ShieldCheck, MoveHorizontal, CheckCircle2, Mail, MessageCircle, Phone } from "lucide-react";
+import { useForm, ValidationError } from "@formspree/react";
 
 export default function App() {
+  const [state, handleSubmit] = useForm("mgodzoag");
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -303,61 +306,92 @@ export default function App() {
                 transition={{ delay: 0.4 }}
                 className="bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-[2.5rem] border border-white/10"
               >
-                <form action="https://formspree.io/f/mgodzoag" method="POST" className="space-y-5">
-                  <div className="grid md:grid-cols-2 gap-5">
+                {state.succeeded ? (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-10"
+                  >
+                    <div className="w-20 h-20 bg-[#1E88E5] text-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#1E88E5]/30">
+                      <CheckCircle2 size={40} />
+                    </div>
+                    <h3 className="text-3xl font-bold mb-4">Vielen Dank!</h3>
+                    <p className="text-slate-300 text-lg">
+                      Ihre Nachricht wurde erfolgreich übermittelt. Wir werden uns in Kürze bei Ihnen melden.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid md:grid-cols-2 gap-5">
+                      <div className="space-y-2">
+                        <label className="text-sm font-semibold text-slate-400 ml-1">Name</label>
+                        <input 
+                          type="text" 
+                          id="name"
+                          name="name"
+                          required
+                          placeholder="Ihr Name"
+                          className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
+                        />
+                        <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-xs mt-1" />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-semibold text-slate-400 ml-1">E-Mail</label>
+                        <input 
+                          type="email" 
+                          id="email"
+                          name="email"
+                          required
+                          placeholder="ihre@email.de"
+                          className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
+                        />
+                        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-xs mt-1" />
+                      </div>
+                    </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-400 ml-1">Name</label>
+                      <label className="text-sm font-semibold text-slate-400 ml-1">Betreff</label>
                       <input 
                         type="text" 
-                        name="name"
-                        required
-                        placeholder="Ihr Name"
+                        id="subject"
+                        name="subject"
+                        placeholder="Wie können wir helfen?"
                         className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
                       />
+                      <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-red-400 text-xs mt-1" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-400 ml-1">E-Mail</label>
-                      <input 
-                        type="email" 
-                        name="email"
+                      <label className="text-sm font-semibold text-slate-400 ml-1">Nachricht</label>
+                      <textarea 
+                        id="message"
+                        name="message"
                         required
-                        placeholder="ihre@email.de"
-                        className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
-                      />
+                        rows={4}
+                        placeholder="Ihre Nachricht an uns..."
+                        className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all resize-none"
+                      ></textarea>
+                      <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1" />
                     </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-400 ml-1">Betreff</label>
-                    <input 
-                      type="text" 
-                      name="subject"
-                      placeholder="Wie können wir helfen?"
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-400 ml-1">Nachricht</label>
-                    <textarea 
-                      name="message"
-                      required
-                      rows={4}
-                      placeholder="Ihre Nachricht an uns..."
-                      className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all resize-none"
-                    ></textarea>
-                  </div>
-                  <button 
-                    type="submit"
-                    className="w-full bg-[#1E88E5] hover:bg-[#1976D2] text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-[#1E88E5]/20 flex items-center justify-center gap-2 group active:scale-95"
-                  >
-                    <span>Nachricht senden</span>
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
+                    <button 
+                      type="submit"
+                      disabled={state.submitting}
+                      className="w-full bg-[#1E88E5] hover:bg-[#1976D2] text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-[#1E88E5]/20 flex items-center justify-center gap-2 group active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <MoveHorizontal size={20} />
-                    </motion.div>
-                  </button>
-                </form>
+                      {state.submitting ? (
+                        <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      ) : (
+                        <>
+                          <span>Nachricht senden</span>
+                          <motion.div
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          >
+                            <MoveHorizontal size={20} />
+                          </motion.div>
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
               </motion.div>
             </div>
           </motion.div>
