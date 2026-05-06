@@ -303,7 +303,7 @@ export default function App() {
                 transition={{ delay: 0.4 }}
                 className="bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-[2.5rem] border border-white/10"
               >
-                <form action="https://formspree.io/f/dispo@ntw-rail.de" method="POST" className="space-y-5">
+                <form action="https://formspree.io/f/mgodzoag" method="POST" className="space-y-5">
                   <div className="grid md:grid-cols-2 gap-5">
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-slate-400 ml-1">Name</label>
