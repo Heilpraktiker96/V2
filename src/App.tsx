@@ -17,19 +17,12 @@ export default function App() {
     setFormStatus("submitting");
 
     const formData = new FormData(e.currentTarget);
-    // access_key is now in a hidden input inside the form
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    // Der access_key ist bereits im hidden input im Formular definiert.
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: json
+        body: formData
       });
 
       const data = await response.json();
