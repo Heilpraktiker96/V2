@@ -13,8 +13,9 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("!!! CONTACT FORM SUBMISSION STARTED !!!");
-    console.log("Provider: Web3Forms");
+    console.log("-----------------------------------------");
+    console.log("SENDING VIA WEB3FORMS - KEY: 4adc4fe8...");
+    console.log("-----------------------------------------");
     setFormStatus("submitting");
 
     const formData = new FormData(e.currentTarget);
@@ -457,8 +458,8 @@ export default function App() {
               <a href="datenschutz.html" className="hover:text-[#1E88E5] transition-colors">Datenschutz</a>
             </div>
             
-            <div className="text-slate-400 text-sm font-medium">
-              © {new Date().getFullYear()} NTW Rail GmbH. Alle Rechte vorbehalten.
+            <div className="text-slate-400 text-[10px] uppercase tracking-widest mt-2">
+              © {new Date().getFullYear()} NTW Rail GmbH. v1.0.9-W3F
             </div>
           </div>
         </div>
