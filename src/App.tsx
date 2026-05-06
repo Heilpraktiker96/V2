@@ -1,6 +1,7 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
+ * Version: 1.0.3 - Web3Forms Integration
  */
 
 import React from "react";
@@ -12,10 +13,11 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Form submission started (Web3Forms)...");
     setFormStatus("submitting");
 
     const formData = new FormData(e.currentTarget);
-    formData.append("access_key", "4adc4fe8-1349-442d-8678-1ab17178f81c"); 
+    // access_key is now in a hidden input inside the form
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
@@ -31,6 +33,7 @@ export default function App() {
       });
 
       const data = await response.json();
+      console.log("Web3Forms response:", data);
 
       if (data.success) {
         setFormStatus("success");
@@ -365,6 +368,7 @@ export default function App() {
                     onSubmit={handleSubmit} 
                     className="space-y-5"
                   >
+                    <input type="hidden" name="access_key" value="4adc4fe8-1349-442d-8678-1ab17178f81c" />
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="space-y-2">
                         <label className="text-sm font-semibold text-slate-400 ml-1">Name</label>
