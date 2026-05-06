@@ -321,7 +321,10 @@ export default function App() {
                     </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
+                  <form 
+                    onSubmit={handleSubmit} 
+                    className="space-y-5"
+                  >
                     <div className="grid md:grid-cols-2 gap-5">
                       <div className="space-y-2">
                         <label className="text-sm font-semibold text-slate-400 ml-1">Name</label>
