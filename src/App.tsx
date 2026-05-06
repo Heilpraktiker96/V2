@@ -3,12 +3,40 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import React from "react";
 import { motion } from "motion/react";
 import { UserCheck, ShieldCheck, MoveHorizontal, CheckCircle2, Mail, MessageCircle, Phone } from "lucide-react";
-import { useForm, ValidationError } from "@formspree/react";
 
 export default function App() {
-  const [state, handleSubmit] = useForm("mdabdejr");
+  const [formStatus, setFormStatus] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus("submitting");
+
+    const formData = new FormData(e.currentTarget);
+    // Ersetze 'YOUR_ACCESS_KEY_HERE' durch deinen Key von https://web3forms.com/
+    formData.append("access_key", "4adc4fe8-1349-442d-8678-1ab17178f81c"); 
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus("success");
+      } else {
+        console.error("Submission failed:", data);
+        setFormStatus("error");
+      }
+    } catch (error) {
+      console.error("Fetch error:", error);
+      setFormStatus("error");
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -306,7 +334,7 @@ export default function App() {
                 transition={{ delay: 0.4 }}
                 className="bg-white/5 backdrop-blur-md p-8 md:p-10 rounded-[2.5rem] border border-white/10"
               >
-                {state.succeeded ? (
+                {formStatus === "success" ? (
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -319,12 +347,16 @@ export default function App() {
                     <p className="text-slate-300 text-lg">
                       Ihre Nachricht wurde erfolgreich übermittelt. Wir werden uns in Kürze bei Ihnen melden.
                     </p>
+                    <button 
+                      onClick={() => setFormStatus("idle")}
+                      className="mt-8 text-sm text-[#1E88E5] hover:underline font-semibold"
+                    >
+                      Weitere Nachricht senden
+                    </button>
                   </motion.div>
                 ) : (
                   <form 
                     onSubmit={handleSubmit} 
-                    action="https://formspree.io/f/mdabdejr"
-                    method="POST"
                     className="space-y-5"
                   >
                     <div className="grid md:grid-cols-2 gap-5">
@@ -338,7 +370,6 @@ export default function App() {
                           placeholder="Ihr Name"
                           className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
                         />
-                        <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-xs mt-1" />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm font-semibold text-slate-400 ml-1">E-Mail</label>
@@ -350,7 +381,6 @@ export default function App() {
                           placeholder="ihre@email.de"
                           className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
                         />
-                        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-xs mt-1" />
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -362,7 +392,6 @@ export default function App() {
                         placeholder="Wie können wir helfen?"
                         className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all"
                       />
-                      <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-red-400 text-xs mt-1" />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-semibold text-slate-400 ml-1">Nachricht</label>
@@ -374,14 +403,18 @@ export default function App() {
                         placeholder="Ihre Nachricht an uns..."
                         className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#1E88E5] transition-all resize-none"
                       ></textarea>
-                      <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1" />
                     </div>
+
+                    {formStatus === "error" && (
+                      <p className="text-red-400 text-sm font-medium">Es gab einen Fehler. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.</p>
+                    )}
+
                     <button 
                       type="submit"
-                      disabled={state.submitting}
+                      disabled={formStatus === "submitting"}
                       className="w-full bg-[#1E88E5] hover:bg-[#1976D2] text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-[#1E88E5]/20 flex items-center justify-center gap-2 group active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {state.submitting ? (
+                      {formStatus === "submitting" ? (
                         <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                       ) : (
                         <>
