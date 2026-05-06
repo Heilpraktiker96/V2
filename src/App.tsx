@@ -15,13 +15,19 @@ export default function App() {
     setFormStatus("submitting");
 
     const formData = new FormData(e.currentTarget);
-    // Ersetze 'YOUR_ACCESS_KEY_HERE' durch deinen Key von https://web3forms.com/
     formData.append("access_key", "4adc4fe8-1349-442d-8678-1ab17178f81c"); 
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
       });
 
       const data = await response.json();
@@ -29,11 +35,11 @@ export default function App() {
       if (data.success) {
         setFormStatus("success");
       } else {
-        console.error("Submission failed:", data);
+        console.error("Web3Forms error:", data);
         setFormStatus("error");
       }
     } catch (error) {
-      console.error("Fetch error:", error);
+      console.error("Network error:", error);
       setFormStatus("error");
     }
   };
