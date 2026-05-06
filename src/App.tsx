@@ -323,6 +323,8 @@ export default function App() {
                 ) : (
                   <form 
                     onSubmit={handleSubmit} 
+                    action="https://formspree.io/f/mdabdejr"
+                    method="POST"
                     className="space-y-5"
                   >
                     <div className="grid md:grid-cols-2 gap-5">
