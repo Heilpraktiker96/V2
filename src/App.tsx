@@ -1,7 +1,8 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * Version: 1.0.3 - Web3Forms Integration
+ * Version: 1.1.1 - Web3Forms Stable
+ * Last Sync Attempt: 2026-05-06T21:50:00Z
  */
 
 import React from "react";
@@ -459,7 +460,7 @@ export default function App() {
             </div>
             
             <div className="text-slate-400 text-[10px] uppercase tracking-widest mt-2">
-              © {new Date().getFullYear()} NTW Rail GmbH. v1.0.9-W3F
+              © {new Date().getFullYear()} NTW Rail GmbH. v1.1.1-W3F-STABLE
             </div>
           </div>
         </div>
