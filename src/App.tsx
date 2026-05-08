@@ -7,7 +7,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { UserCheck, ShieldCheck, MoveHorizontal, CheckCircle2, Mail, MessageCircle, Phone } from "lucide-react";
+import { UserCheck, ShieldCheck, CheckCircle2, Mail, MessageCircle, Phone, Wrench, Combine } from "lucide-react";
 
 export default function App() {
   const [formStatus, setFormStatus] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -172,7 +172,7 @@ export default function App() {
                 Wir sind ein junges, wachsendes Team und bringen genau die Energie mit, die es braucht, um Dinge voranzubringen.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
-                Wo andere nur „Engpässe“ sehen, packen wir an: Wir überbrücken für Sie nicht einfach nur Lücken, sondern helfen Ihnen dabei, den Betrieb am Laufen zu halten und sogar noch eine Schippe draufzulegen. Bei NTW Rail trifft echte Logistik-Leidenschaft auf die Flexibilität eines modernen Unternehmens.
+                Wo andere nur „Engpässe“ sehen, packen wir an: Wir überbrücken für Sie nicht einfach nur Lücken, sondern helfen Ihnen dabei, den Betrieb am Laufen zu halten. Bei NTW Rail trifft echte Logistik-Leidenschaft auf die Flexibilität eines modernen Unternehmens.
               </p>
             </motion.div>
             
@@ -226,12 +226,12 @@ export default function App() {
                 desc: "Erfahrene Lokführer für den Güterverkehr. Jahrelange Praxiserfahrung in diversen Baureihen und umfassende Streckenkenntnisse." 
               },
               { 
-                icon: <ShieldCheck className="w-8 h-8" />, 
+                icon: <Wrench className="w-8 h-8" />, 
                 title: "Wagenmeister", 
                 desc: "Präzision bei jeder Prüfung. Unsere Wagenmeister gewähren durch technische Kontrollen die Betriebssicherheit Ihrer Züge." 
               },
               { 
-                icon: <MoveHorizontal className="w-8 h-8" />, 
+                icon: <Combine className="w-8 h-8" />, 
                 title: "Rangierbegleiter", 
                 desc: "Sicheres Rangieren und fachgerechte Zugbildung. Wir stellen qualifiziertes Personal für die Last-Mile-Logistik." 
               }
@@ -295,7 +295,6 @@ export default function App() {
                         <div className="text-xs text-slate-400 group-hover:text-white/80 transition-colors">Direkter Chat</div>
                       </div>
                     </div>
-                    <MoveHorizontal size={20} className="text-[#25D366] group-hover:text-white transition-colors" />
                   </a>
 
                   <a 
@@ -311,7 +310,6 @@ export default function App() {
                         <div className="text-xs text-slate-400 group-hover:text-white/80 transition-colors">+49 (0) 162 4681721</div>
                       </div>
                     </div>
-                    <MoveHorizontal size={20} className="text-[#1E88E5] group-hover:text-white transition-colors" />
                   </a>
 
                   <a 
@@ -327,7 +325,6 @@ export default function App() {
                         <div className="text-xs text-slate-400 group-hover:text-[#0A2442]/60 transition-colors">dispo@ntw-rail.de</div>
                       </div>
                     </div>
-                    <MoveHorizontal size={20} className="text-white group-hover:text-[#0A2442] transition-colors" />
                   </a>
                 </div>
               </motion.div>
@@ -425,12 +422,6 @@ export default function App() {
                       ) : (
                         <>
                           <span>Nachricht senden</span>
-                          <motion.div
-                            animate={{ x: [0, 5, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                          >
-                            <MoveHorizontal size={20} />
-                          </motion.div>
                         </>
                       )}
                     </button>
