@@ -1,8 +1,8 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * Version: 1.1.1 - Web3Forms Stable
- * Last Sync Attempt: 2026-05-06T21:50:00Z
+ * Version: 1.2.0 - ALB Deployment
+ * Last Sync Attempt: 2026-05-08T19:45:00Z
  */
 
 import React from "react";
@@ -452,7 +452,7 @@ export default function App() {
             
             <div className="text-slate-400 text-[10px] uppercase tracking-widest mt-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-              © {new Date().getFullYear()} NTW Rail GmbH. v1.1.3-STABLE
+              © {new Date().getFullYear()} NTW Rail GmbH. v1.2.0-ALB
             </div>
           </div>
         </div>
