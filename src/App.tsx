@@ -459,8 +459,9 @@ export default function App() {
               <a href="datenschutz.html" className="hover:text-[#1E88E5] transition-colors">Datenschutz</a>
             </div>
             
-            <div className="text-slate-400 text-[10px] uppercase tracking-widest mt-2">
-              © {new Date().getFullYear()} NTW Rail GmbH. v1.1.1-W3F-STABLE
+            <div className="text-slate-400 text-[10px] uppercase tracking-widest mt-2 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+              © {new Date().getFullYear()} NTW Rail GmbH. v1.1.3-STABLE
             </div>
           </div>
         </div>
