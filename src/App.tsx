@@ -1,13 +1,13 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * Version: 1.2.0 - ALB Deployment
- * Last Sync Attempt: 2026-05-08T19:45:00Z
+ * Version: 1.2.1 - ALB & Logo Fix
+ * Last Sync Attempt: 2026-05-11T11:46:00Z
  */
 
 import React from "react";
 import { motion } from "motion/react";
-import { UserCheck, ShieldCheck, CheckCircle2, Mail, MessageCircle, Phone, Wrench, Combine } from "lucide-react";
+import { UserCheck, ShieldCheck, CheckCircle2, Mail, MessageCircle, Phone, Wrench, Combine, TrainFront } from "lucide-react";
 
 export default function App() {
   const [formStatus, setFormStatus] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -68,11 +68,21 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center gap-4">
-              <img 
-                src="NTW%20Rail%20Logo.png" 
-                alt="NTW Rail Logo" 
-                className="h-16 w-auto object-contain"
-              />
+              <div className="relative h-16 w-auto flex items-center">
+                <img 
+                  src="/NTW Rail Logo.png" 
+                  alt="NTW Rail Logo" 
+                  className="h-16 w-auto object-contain"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div className="hidden h-16 w-16 bg-[#0A2442] text-white rounded-xl items-center justify-center" style={{ display: 'none' }}>
+                  <TrainFront size={32} />
+                </div>
+              </div>
               <div className="hidden lg:block h-8 w-[1px] bg-slate-200"></div>
               <div className="hidden lg:block text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">
                 Precision<br />Logistic
@@ -438,11 +448,21 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center">
-              <img 
-                src="NTW%20Rail%20Logo.png" 
-                alt="NTW Rail Logo" 
-                className="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
-              />
+              <div className="relative h-10 w-auto flex items-center">
+                <img 
+                  src="/NTW Rail Logo.png" 
+                  alt="NTW Rail Logo" 
+                  className="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div className="hidden h-10 w-10 bg-slate-200 text-slate-400 rounded flex items-center justify-center" style={{ display: 'none' }}>
+                  <TrainFront size={20} />
+                </div>
+              </div>
             </div>
             
             <div className="flex gap-10 text-sm font-semibold text-slate-500">
@@ -452,7 +472,7 @@ export default function App() {
             
             <div className="text-slate-400 text-[10px] uppercase tracking-widest mt-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-              © {new Date().getFullYear()} NTW Rail GmbH. v1.2.0-ALB
+              © {new Date().getFullYear()} NTW Rail GmbH. v1.2.1-ALB
             </div>
           </div>
         </div>
