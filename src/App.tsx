@@ -1,8 +1,8 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
- * Version: 1.2.1 - ALB & Logo Fix
- * Last Sync Attempt: 2026-05-11T11:46:00Z
+ * Version: 1.3.0 - ALB Update
+ * Last Sync Attempt: 2026-06-22T09:51:00Z
  */
 
 import React from "react";
@@ -472,7 +472,7 @@ export default function App() {
             
             <div className="text-slate-400 text-[10px] uppercase tracking-widest mt-2 flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-              © {new Date().getFullYear()} NTW Rail GmbH. v1.2.1-ALB
+              © {new Date().getFullYear()} NTW Rail GmbH. v1.3.0-ALB
             </div>
           </div>
         </div>
